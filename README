@@ -1,15 +1,14 @@
 PGObject-Util-Replication-Slot
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+This module provides general management functions of replication slots
+to the frameworks which use them.  The actual database connection handling
+is not within the responsibiity of this module.  I.e. this module acts as a 
+task runner to fetch information on database replication slots of the
+specified database handle.
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+This module is intended to be called from other modules which are more
+closely tied to database handles and therefore tha annoyance of passing
+the db handle in to the function is expected to be minimal.
 
 
 INSTALLATION
