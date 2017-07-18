@@ -32,10 +32,11 @@
       },
       "runtime" : {
          "requires" : {
+            "Moo" : "0",
             "perl" : "5.006"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "v0.01"
+   "version" : "v0.01.01"
 }

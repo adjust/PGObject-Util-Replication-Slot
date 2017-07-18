@@ -4,6 +4,7 @@ MANIFEST
 MANIFEST.SKIP
 README
 t/00-load.t
+t/01-base-physical.t
 t/01-dbtests.t
 t/manifest.t
 t/pod-coverage.t
