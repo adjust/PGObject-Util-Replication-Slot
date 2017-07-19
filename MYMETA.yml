@@ -18,6 +18,7 @@ no_index:
     - t
     - inc
 requires:
+  DBI: 0
   Moo: 0
   perl: 5.006
-version: v0.01.01
+version: v0.01.02

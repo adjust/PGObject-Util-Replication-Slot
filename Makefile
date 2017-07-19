@@ -19,7 +19,7 @@
 #     MIN_PERL_VERSION => q[5.006]
 #     NAME => q[PGObject::Util::Replication::Slot]
 #     PL_FILES => {  }
-#     PREREQ_PM => { Test::More=>q[0], Moo=>q[0] }
+#     PREREQ_PM => { Moo=>q[0], DBI=>q[0], Test::More=>q[0] }
 #     TEST_REQUIRES => {  }
 #     VERSION_FROM => q[lib/PGObject/Util/Replication/Slot.pm]
 #     clean => { FILES=>q[PGObject-Util-Replication-Slot-*] }
@@ -62,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = PGObject::Util::Replication::Slot
 NAME_SYM = PGObject_Util_Replication_Slot
-VERSION = v0.01.01
+VERSION = v0.01.02
 VERSION_MACRO = VERSION
-VERSION_SYM = v0_01_01
+VERSION_SYM = v0_01_02
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = v0.01.01
+XS_VERSION = v0.01.02
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -260,7 +260,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = PGObject-Util-Replication-Slot
-DISTVNAME = PGObject-Util-Replication-Slot-v0.01.01
+DISTVNAME = PGObject-Util-Replication-Slot-v0.01.02
 
 
 # --- MakeMaker macro section:
@@ -442,22 +442,22 @@ clean_subdirs :
 
 clean :: clean_subdirs
 	- $(RM_F) \
-	  core.[0-9][0-9][0-9] core \
-	  blibdirs.ts $(BASEEXT).def \
-	  core.[0-9][0-9][0-9][0-9][0-9] tmon.out \
-	  $(INST_ARCHAUTODIR)/extralibs.all perl$(EXE_EXT) \
-	  pm_to_blib.ts $(BASEEXT).exp \
-	  MYMETA.yml core.[0-9] \
-	  *perl.core so_locations \
-	  mon.out *$(LIB_EXT) \
-	  $(MAKE_APERL_FILE) perl \
-	  perlmain.c $(INST_ARCHAUTODIR)/extralibs.ld \
-	  perl.exe $(BASEEXT).bso \
-	  core.[0-9][0-9] core.[0-9][0-9][0-9][0-9] \
-	  pm_to_blib *$(OBJ_EXT) \
-	  core.*perl.*.? $(BOOTSTRAP) \
-	  MYMETA.json $(BASEEXT).x \
-	  lib$(BASEEXT).def 
+	  core.[0-9][0-9][0-9] $(BASEEXT).bso \
+	  core perl$(EXE_EXT) \
+	  core.[0-9] *$(LIB_EXT) \
+	  *perl.core $(BASEEXT).def \
+	  core.*perl.*.? core.[0-9][0-9][0-9][0-9][0-9] \
+	  tmon.out perl.exe \
+	  core.[0-9][0-9][0-9][0-9] perlmain.c \
+	  so_locations *$(OBJ_EXT) \
+	  pm_to_blib.ts $(INST_ARCHAUTODIR)/extralibs.all \
+	  $(INST_ARCHAUTODIR)/extralibs.ld MYMETA.yml \
+	  pm_to_blib core.[0-9][0-9] \
+	  blibdirs.ts $(MAKE_APERL_FILE) \
+	  $(BASEEXT).x $(BOOTSTRAP) \
+	  lib$(BASEEXT).def $(BASEEXT).exp \
+	  mon.out MYMETA.json \
+	  perl 
 	- $(RM_RF) \
 	  blib PGObject-Util-Replication-Slot-* 
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
@@ -500,9 +500,10 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  DBI: 0' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Moo: 0' >> META_new.yml
 	$(NOECHO) $(ECHO) '  perl: 5.006' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: v0.01.01' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: v0.01.02' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -539,13 +540,14 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "runtime" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '            "DBI" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Moo" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "perl" : "5.006"' >> META_new.json
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "v0.01.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "v0.01.02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
@@ -846,6 +848,7 @@ ppd :
 	$(NOECHO) $(ECHO) '    <AUTHOR>Chris Travers &lt;chris.travers@adjust.com&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <PERLCORE VERSION="5,006,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBI::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Moo::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-thread-multi-2level-5.18" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd

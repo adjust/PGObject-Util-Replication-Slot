@@ -1,11 +1,12 @@
 Changes
 lib/PGObject/Util/Replication/Slot.pm
+Makefile.PL
 MANIFEST
-MANIFEST.SKIP
 README
 t/00-load.t
 t/01-base-physical.t
 t/01-dbtests.t
+t/02-monitoring-physical.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

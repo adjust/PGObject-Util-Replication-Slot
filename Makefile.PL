@@ -19,6 +19,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
         'Moo' => 0,
+        'DBI' => 0,
         #'Foo::Bar::Module' => '5.0401',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
