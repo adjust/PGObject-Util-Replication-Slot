@@ -13,6 +13,6 @@ addons:
 env:
   - COVERAGE=1 RELEASE_TESTING=1 DB_TESTING=1
 before_install:
-   - sh t/heloers/travis-setup.sh
+   - sh t/helpers/travis-setup.sh
    - eval $(curl https://travis-perl.github.io/init) --auto
 
