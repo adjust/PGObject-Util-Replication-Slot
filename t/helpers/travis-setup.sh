@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 'ALTER SYSTEM SET max_wal_senders = 5' > psql -U postgres
-echo 'ALTER SYSTEM SET max_replication_slots = 5' > psql -U postgres
-pg_ctlcluster 9.6 main restart
+echo 'ALTER SYSTEM SET max_wal_senders to 5' > psql -U travis
+echo 'ALTER SYSTEM SET max_replication_slots to 5' > psql -U travis
+service postgresql restart 9.6
