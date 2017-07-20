@@ -1,4 +1,5 @@
 language: perl
+sudo: required
 perl:
   - '5.10'
   - '5.12'
@@ -13,6 +14,6 @@ addons:
 env:
   - COVERAGE=1 RELEASE_TESTING=1 DB_TESTING=1
 before_install:
-   - sh t/helpers/travis-setup.sh
+   - sudo sh t/helpers/travis-setup.sh
    - eval $(curl https://travis-perl.github.io/init) --auto
 
