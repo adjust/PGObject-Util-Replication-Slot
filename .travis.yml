@@ -14,7 +14,6 @@ addons:
 env:
   - COVERAGE=1 RELEASE_TESTING=1 DB_TESTING=1
 before_install:
-   - cat /etc/postgresql/9.6/main/postgresql.conf
    - t/helpers/travis-setup.sh
    - eval $(curl https://travis-perl.github.io/init) --auto
 
