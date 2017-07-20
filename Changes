@@ -1,11 +1,14 @@
 Revision history for PGObject-Util-Replication-Slot
 
-0.01    2017-07-17
-        First version, released on an unsuspecting world.
+0.10.02	2017-07-21
+	Version number increment for indexing
+
+0.01.02	2017-07-19
+	Fixed small packaging issue: DBI dependency not listed.
 
 0.01.01	2017-07-18
 	Fixed large packaging issues (dependencies, missing files)
 
-0.01.02	2017-07-19
-	Fixed small packaging issue: DBI dependency not listed.
+0.01    2017-07-17
+        First version, released on an unsuspecting world.
 
