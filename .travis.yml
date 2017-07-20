@@ -11,7 +11,9 @@ perl:
 addons:
    postgresql: "9.6"
 env:
-  - DB_TESTING=1 COVERAGE=1 RELEASE_TESTING=1
+  # Removed DB_TESTING=1 because we need a helper script first to set
+  # up the replicaiton slot limits
+  - COVERAGE=1 RELEASE_TESTING=1
 before_install:
    - eval $(curl https://travis-perl.github.io/init) --auto
 
