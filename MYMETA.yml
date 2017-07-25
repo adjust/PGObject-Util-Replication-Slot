@@ -22,4 +22,4 @@ requires:
   DBI: 0
   Moo: 0
   perl: 5.006
-version: v0.01.02
+version: 0.010002

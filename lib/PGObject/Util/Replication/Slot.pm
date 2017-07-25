@@ -12,11 +12,11 @@ PGObject::Util::Replication::Slot - Manage and Monitor Replication Slots
 
 =head1 VERSION
 
-Version v0.10.2
+Version v
 
 =cut
 
-our $VERSION = 0.010002;
+our $VERSION = "1.000000";
 
 
 =head1 SYNOPSIS
@@ -120,8 +120,13 @@ able to gatch up through normal means.
 my $query = 
 "
 SELECT slot_name, slot_type, active, restart_lsn, to_jsonb(s) as full_data, 
-       now() as querytime, pg_current_xlog_location(), 
-       pg_current_xlog_location() - restart_lsn AS current_lag_bytes
+       now() as querytime, CASE WHEN pg_is_in_recovery() 
+                                THEN null::pg_lsn
+                                ELSE pg_current_xlog_location() END
+                           AS pg_current_xlog_location, 
+       CASE WHEN pg_is_in_recovery() THEN null::int 
+            ELSE pg_current_xlog_location() - restart_lsn END
+       AS current_lag_bytes
   FROM pg_replication_slots s
  WHERE slot_name LIKE ?
  ORDER BY slot_name

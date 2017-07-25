@@ -1,3 +1,4 @@
+.travis.yml
 Changes
 lib/PGObject/Util/Replication/Slot.pm
 Makefile.PL
@@ -7,6 +8,7 @@ t/00-load.t
 t/01-base-physical.t
 t/01-dbtests.t
 t/02-monitoring-physical.t
+t/helpers/travis-setup.sh
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

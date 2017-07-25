@@ -19,7 +19,7 @@
 #     MIN_PERL_VERSION => q[5.006]
 #     NAME => q[PGObject::Util::Replication::Slot]
 #     PL_FILES => {  }
-#     PREREQ_PM => { Moo=>q[0], Test::More=>q[0], DBD::Pg=>q[0], DBI=>q[0] }
+#     PREREQ_PM => { Moo=>q[0], DBI=>q[0], DBD::Pg=>q[0], Test::More=>q[0] }
 #     TEST_REQUIRES => {  }
 #     VERSION_FROM => q[lib/PGObject/Util/Replication/Slot.pm]
 #     clean => { FILES=>q[PGObject-Util-Replication-Slot-*] }
@@ -62,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = PGObject::Util::Replication::Slot
 NAME_SYM = PGObject_Util_Replication_Slot
-VERSION = v0.01.02
+VERSION = 0.010002
 VERSION_MACRO = VERSION
-VERSION_SYM = v0_01_02
+VERSION_SYM = 0_010002
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = v0.01.02
+XS_VERSION = 0.010002
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -260,7 +260,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = PGObject-Util-Replication-Slot
-DISTVNAME = PGObject-Util-Replication-Slot-v0.01.02
+DISTVNAME = PGObject-Util-Replication-Slot-0.010002
 
 
 # --- MakeMaker macro section:
@@ -442,24 +442,24 @@ clean_subdirs :
 
 clean :: clean_subdirs
 	- $(RM_F) \
-	  blibdirs.ts core.*perl.*.? \
-	  core.[0-9][0-9][0-9][0-9][0-9] pm_to_blib \
-	  lib$(BASEEXT).def $(INST_ARCHAUTODIR)/extralibs.all \
-	  $(BOOTSTRAP) $(BASEEXT).def \
-	  perl.exe so_locations \
-	  mon.out core.[0-9] \
-	  $(BASEEXT).bso core.[0-9][0-9][0-9] \
-	  core perl$(EXE_EXT) \
-	  *$(LIB_EXT) pm_to_blib.ts \
-	  perl tmon.out \
-	  $(INST_ARCHAUTODIR)/extralibs.ld $(BASEEXT).exp \
-	  perlmain.c MYMETA.json \
-	  *perl.core *$(OBJ_EXT) \
-	  MYMETA.yml $(MAKE_APERL_FILE) \
-	  core.[0-9][0-9] $(BASEEXT).x \
-	  core.[0-9][0-9][0-9][0-9] 
+	  MYMETA.yml $(BASEEXT).def \
+	  pm_to_blib.ts core.[0-9][0-9][0-9] \
+	  so_locations *$(OBJ_EXT) \
+	  mon.out core.[0-9][0-9][0-9][0-9] \
+	  core.[0-9][0-9] core.[0-9][0-9][0-9][0-9][0-9] \
+	  *$(LIB_EXT) $(BOOTSTRAP) \
+	  $(INST_ARCHAUTODIR)/extralibs.all core.*perl.*.? \
+	  perl.exe perl$(EXE_EXT) \
+	  $(BASEEXT).exp core \
+	  perl $(INST_ARCHAUTODIR)/extralibs.ld \
+	  $(BASEEXT).x tmon.out \
+	  $(MAKE_APERL_FILE) pm_to_blib \
+	  blibdirs.ts *perl.core \
+	  core.[0-9] MYMETA.json \
+	  perlmain.c $(BASEEXT).bso \
+	  lib$(BASEEXT).def 
 	- $(RM_RF) \
-	  PGObject-Util-Replication-Slot-* blib 
+	  blib PGObject-Util-Replication-Slot-* 
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
 
 
@@ -504,7 +504,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  DBI: 0' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Moo: 0' >> META_new.yml
 	$(NOECHO) $(ECHO) '  perl: 5.006' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: v0.01.02' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.010002' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -549,7 +549,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "v0.01.02"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.010002"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
