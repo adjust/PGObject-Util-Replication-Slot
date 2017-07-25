@@ -1,5 +1,8 @@
 Revision history for PGObject-Util-Replication-Slot
 
+0.20.0	2017-07-25
+	Replicas now supported for slot management
+
 0.10.02	2017-07-21
 	Version number increment for indexing
 

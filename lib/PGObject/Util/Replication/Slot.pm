@@ -12,11 +12,11 @@ PGObject::Util::Replication::Slot - Manage and Monitor Replication Slots
 
 =head1 VERSION
 
-Version v
+Version v0.20.0
 
 =cut
 
-our $VERSION = "1.000000";
+our $VERSION = "0.20.0";
 
 
 =head1 SYNOPSIS
